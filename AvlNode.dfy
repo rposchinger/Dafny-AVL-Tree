@@ -25,8 +25,8 @@ class AvlNode {
   {
     Valid() &&
     Heigth_Valid() &&
-    (left != null && right == null) ==> left.height - 1 <= 1 &&
-    (left == null && right != null) ==> right.height - 1 <= 1  &&
+    (left != null && right == null) ==> left.height + 1 <= 1 &&
+    (left == null && right != null) ==> right.height + 1 <= 1  &&
     (left != null && right != null) ==> (right.height - left.height <= 1 && left.height - right.height <= 1) &&
     (right != null) ==> right.Balanced() &&
     (left != null) ==> left.Balanced()
