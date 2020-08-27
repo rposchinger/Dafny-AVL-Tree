@@ -100,7 +100,7 @@ class AvlTree {
         ensures old(node.Repr) == node.Repr;
         ensures old(node.Contents) == node.Contents;
         ensures node.Valid();
-        ensures node.Heigth_Valid();
+        ensures node.Height_Valid();
     {
         var r:int := get_height(node.right);
         var l:int := get_height(node.left);
@@ -114,7 +114,7 @@ class AvlTree {
         ensures old(node.Repr) == new_node.Repr;
         ensures old(node.Contents) == new_node.Contents;
         ensures new_node.Valid();
-        ensures new_node.Heigth_Valid();
+        ensures new_node.Height_Valid();
         ensures node.Valid();
         ensures new_node == old(node.right);
         ensures new_node.right == old(new_node.right);
@@ -149,7 +149,7 @@ class AvlTree {
         ensures old(node.Contents) == new_node.Contents;
         ensures new_node.Valid();
         ensures node.Valid();
-        ensures new_node.Heigth_Valid();
+        ensures new_node.Height_Valid();
         ensures new_node == old(node.left);
         ensures new_node.left == old(new_node.left);
         ensures new_node.right == old(node);
@@ -180,7 +180,7 @@ class AvlTree {
         modifies node.Repr
         requires node.Valid()
         ensures new_node.Valid()
-        ensures new_node.Heigth_Valid()
+        ensures new_node.Height_Valid()
         ensures new_node.Balanced()
         ensures node.Valid()
         ensures old(node.Repr) == new_node.Repr;
@@ -224,7 +224,7 @@ class AvlTree {
         modifies node.Repr;
         requires node.Valid();
         ensures new_node.Valid();
-        ensures new_node.Heigth_Valid();
+        ensures new_node.Height_Valid();
         ensures new_node.Balanced()
         ensures node.Valid();
         ensures old(node.Repr) == new_node.Repr;
@@ -267,7 +267,7 @@ class AvlTree {
         requires node == null || (node.Valid() && node.Balanced())
         modifies if node != null then node.Repr + {node} else {}
         ensures new_node.Valid()
-        ensures new_node.Heigth_Valid()
+        ensures new_node.Height_Valid()
         ensures new_node.Balanced()
         ensures node == null ==> fresh(new_node.Repr) && new_node.Contents == {x}
         ensures node != null ==> new_node.Contents == old(node.Contents) + {x}
@@ -365,7 +365,7 @@ class AvlTree {
         modifies node.Repr
         ensures new_node != null ==> fresh(new_node.Repr - old(node.Repr))
         ensures new_node != null ==> new_node.Valid()
-        ensures new_node != null ==> new_node.Heigth_Valid()
+        ensures new_node != null ==> new_node.Height_Valid()
         ensures new_node != null ==> new_node.Balanced()
         ensures new_node == null ==> old(node.Contents) <= {x}
         ensures new_node != null ==> new_node.Contents == old(node.Contents) - {x}

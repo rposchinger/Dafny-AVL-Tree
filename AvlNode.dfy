@@ -2,13 +2,13 @@ class AvlNode {
     ghost var Contents: set<int>
     ghost var Repr: set<AvlNode>
 
-    //Heigth of the subtree
+    //Height of the subtree
     var height: int
     var data: int
     var left: AvlNode?
     var right: AvlNode?
 
-  predicate Heigth_Valid() 
+  predicate Height_Valid() 
     reads this, Repr 
   {
     Valid() &&
@@ -16,15 +16,15 @@ class AvlNode {
     (left != null && right == null) ==> height == left.height + 1 &&
     (left == null && right != null) ==> height == right.height + 1 &&
     (left != null && right != null) ==> height == max(left.height, right.height) + 1 &&
-    (right != null) ==> right.Heigth_Valid() &&
-    (left != null) ==> left.Heigth_Valid()
+    (right != null) ==> right.Height_Valid() &&
+    (left != null) ==> left.Height_Valid()
   }
 
   predicate Balanced() 
     reads this, Repr
   {
     Valid() &&
-    Heigth_Valid() &&
+    Height_Valid() &&
     (left != null && right == null) ==> left.height + 1 <= 1 &&
     (left == null && right != null) ==> right.height + 1 <= 1  &&
     (left != null && right != null) ==> (right.height - left.height <= 1 && left.height - right.height <= 1) &&
@@ -67,7 +67,7 @@ class AvlNode {
 
     constructor Init(x: int)
         ensures Valid() && fresh(Repr - {this})
-        ensures Heigth_Valid()
+        ensures Height_Valid()
         ensures Balanced()
         ensures Contents == {x}
         ensures Repr == {this};
