@@ -377,12 +377,14 @@ class AvlTree {
             new_node.left := t;
             new_node.Contents := new_node.Contents - {x};
             if new_node.left != null { new_node.Repr := new_node.Repr + new_node.left.Repr; }
+            update_height(new_node);
             new_node := check_rotation_left(new_node);
         } else if new_node.right != null && new_node.data < x {
             var t := remove_helper(x, new_node.right);
             new_node.right := t;
             new_node.Contents := new_node.Contents - {x};
             if new_node.right != null { new_node.Repr := new_node.Repr + new_node.right.Repr; }
+            update_height(new_node);
             new_node := check_rotation_right(new_node);
         } else if x == new_node.data {
             if new_node.left == null && new_node.right == null {
@@ -399,6 +401,7 @@ class AvlTree {
                 if new_node.right != null { new_node.Repr := new_node.Repr + new_node.right.Repr; }
             }
             if (new_node != null) {
+                update_height(new_node);
                 new_node := check_rotation_left(new_node);
                 new_node := check_rotation_right(new_node);
             }
@@ -428,6 +431,7 @@ class AvlTree {
             if node.left != null { node.Repr := node.Repr + node.left.Repr; }
             if(new_node != null) {
                 new_node := check_rotation_left(new_node);
+                update_height(new_node);
             }
         }
     }
