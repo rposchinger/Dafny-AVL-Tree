@@ -10,8 +10,6 @@ Seminar Paper: [Object-Oriented Verification with Dafny](https://poschinger.net/
 ## Author
 Richard Poschinger 
 
-([poschinger.net](https://poschinger.net))
-
 Based on the Dafny Binary Tree by Microsoft
 
 ## License
